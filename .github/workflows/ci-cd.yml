@@ -18,4 +18,4 @@ jobs:
           DB_USER: ${{ secrets.DB_ADMIN_USER }}
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
           DB_NAME: ${{ secrets.DB_NAME }}
-        run: mysql -h $DB_HOST -u $DB_USER -p$DB_PASSWORD $DB_NAME < schema_changes_git.sql
+        run: mysql -h mysql.database.azure.com -u psingh -p Software@2025a psingh1994 < schema_changes_git.sql

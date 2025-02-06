@@ -13,5 +13,9 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y mysql-client
 
       - name: Deploy to Database
-        run: |
-            mysql -h "${{ secrets.DB_HOST }}" -u "${{ secrets.DB_USER }}" --password="${{ secrets.DB_PASSWORD }}" "${{ secrets.DB_NAME }}" < schema_changes_git.sql
+        env:
+          DB_HOST: ${{ secrets.DB_HOST }}
+          DB_USER: ${{ secrets.DB_ADMIN_USER }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          DB_NAME: ${{ secrets.DB_NAME }}
+        run: mysql -h $DB_HOST -u $DB_USER -p$DB_PASSWORD $DB_NAME < schema_changes_git.sql
